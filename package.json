@@ -1,0 +1,22 @@
+{
+  "name": "match-intervals",
+  "version": "1.0.0",
+  "description": "Programming assignment",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js < input-data.txt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TimeZynk/match-intervals.git"
+  },
+  "author": "Johan Heander",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TimeZynk/match-intervals/issues"
+  },
+  "homepage": "https://github.com/TimeZynk/match-intervals#readme",
+  "devDependencies": {
+    "mocha": "^6.2.2"
+  }
+}
