@@ -28,14 +28,14 @@ RR4,CD1
 The program should read its input data from *stdin* and output the result to *stdout*.
 The input data has the following format:
 ```
-<input-data> ::= <input-row> | <input-row> <input-data>
-<input-row> ::= <type-identifier> <row-id>":" <from-date> <from-time> "-" <to-date> <to-time> <EOL>
+<input-data>      ::= <input-row> | <input-row> <input-data>
+<input-row>       ::= <type-identifier> <row-id>":" <from-date> <from-time> "-" <to-date> <to-time> <EOL>
 <type-identifier> ::= "Shift" | "Availability"
-<row-id> ::= ([0-9a-zA-Z]+)
-<from-date> ::= YYYY-mm-dd
-<from-time> ::= HH:MM
-<to-date> ::= YYYY-mm-dd
-<to-time> ::= HH:MM
+<row-id>          ::= ([0-9a-zA-Z]+)
+<from-date>       ::= YYYY-mm-dd
+<from-time>       ::= HH:MM
+<to-date>         ::= YYYY-mm-dd
+<to-time>         ::= HH:MM
 ```
 The `type-identifier` can be either `Shift` or `Availability`. The `alpha-numeric ID` can be any combination of
 English alpha-numeric characters (`[0-9a-zA-Z]+`). The `from-date` and `to-date` are both dates in ISO format. Both
