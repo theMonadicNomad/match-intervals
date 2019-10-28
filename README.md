@@ -20,7 +20,8 @@ Availability 5E8: 2019-10-28 09:00 - 2019-10-28 23:00
 
 It gives that two shifts could be booked:
 ```
-RR4,CD1
+RR4
+CD1
 ```
 
 ## Input and output
@@ -37,12 +38,12 @@ The input data has the following format:
 <to-date>         ::= YYYY-mm-dd
 <to-time>         ::= HH:MM
 ```
-The `type-identifier` can be either `Shift` or `Availability`. The `alpha-numeric ID` can be any combination of
+The `type-identifier` can be either `Shift` or `Availability`. The `row-id` can be any combination of
 English alpha-numeric characters (`[0-9a-zA-Z]+`). The `from-date` and `to-date` are both dates in ISO format. Both
 time fields are formatted as HH:MM. The input rows will not come in any particular order and shift rows and
 availability rows may be interleaved.
 
-The program should output a comma-separated list of Shift IDs that are possible to book given the availability.
+The program should output a newline-separated list of Shift IDs that are possible to book given the availability.
 
 ## Program structure
 
