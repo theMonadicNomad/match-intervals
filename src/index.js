@@ -6,12 +6,6 @@ var rl = readline.createInterface({
     terminal: false
 });
 
-var availQueue = [];
-var availability = new Object();
-var shift = new Object();
-var sortedAvail = new Object();
-var sortedShift = new Object();
-
 
 if (require.main === module) {
     main();
@@ -19,7 +13,14 @@ if (require.main === module) {
 
 function main() {
 
+    var availQueue = [];
+    var availability = new Object();
+    var shift = new Object();
+    var sortedAvail = new Object();
+    var sortedShift = new Object();
+
     rl.on('line', function (line) {
+
         var s = line.split(' ');
         const fro = new Date(s[2] + 'T' + s[3] + ':00').getTime();
         const to = new Date(s[5] + 'T' + s[6] + ':00').getTime();
@@ -30,6 +31,7 @@ function main() {
             shift[fro] = [to, s[1].slice(0, -1)];
 
     }).on('close', function () {
+
         sortedAvail = sortkeys(availability);
         sortedShift = sortkeys(shift);
         for (var key in sortedAvail)
@@ -40,12 +42,11 @@ function main() {
     })
 }
 
-
 processSchedule = (ava, shi) => {
 
     for (key in shi) {
-        for (i = 0; i < ava.length; i++) 
-            if (ava[i][0] <= key) 
+        for (i = 0; i < ava.length; i++)
+            if (ava[i][0] <= key)
                 if (shi[key][0] <= ava[i][1][0]) {
                     console.log(shi[key][1])
                     break
