@@ -54,7 +54,7 @@ processSchedule = (ava, shi) => {
         for (i = 0; i < ava.length; i++) {
             if (ava[i][0] <= key) {
 
-                if (shi[key][0] < ava[i][1][0]) {
+                if (shi[key][0] <= ava[i][1][0]) {
 
                    console.log(shi[key][1] + " j : " + j++ + " " + ava[i][1][1])
                     break
