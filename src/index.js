@@ -49,22 +49,25 @@ processSchedule = (ava, shi) => {
     j = 0;
     console.log("from here")
     for (key in shi) {
+        console.log(' ava ' + ava[0][0] + ' key ' + key)
 
-        while (ava[0][0] > key) {
-            queue.shift();
-        }
-        for (i = 0; i < queue.length; i++) {
+        for (i = 0; i < ava.length; i++) {
             if (ava[i][0] <= key) {
 
                 if (shi[key][0] < ava[i][1][0]) {
 
-                    console.log(shi[key][1] + " j : " + j++)
+                   console.log(shi[key][1] + " j : " + j++ + " " + ava[i][1][1])
                     break
                 }
             }
         }
+        while (ava[0][1][0] < key) {
+            ava.shift();
+            console.log('hi :')
+        }
 
     }
+    console.log(ava);
 
 }
 
