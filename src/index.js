@@ -1,5 +1,3 @@
-//const { process } = require("./process");
-var Queue = require('queue-fifo');
 const readline = require('readline');
 
 var rl = readline.createInterface({
@@ -8,67 +6,53 @@ var rl = readline.createInterface({
     terminal: false
 });
 
-var queue = [];
-var availability = {}; //new Object();
+var availQueue = [];
+var availability = new Object();
 var shift = new Object();
-var sAv = {};
-var sSh = new Object();
-function main() {
-    console.log('Write your code here!');
-    procesline();
+var sortedAvail = new Object();
+var sortedShift = new Object();
 
+
+if (require.main === module) {
+    main();
 }
 
-var procesline = function () {
+function main() {
 
     rl.on('line', function (line) {
         var s = line.split(' ');
         const fro = new Date(s[2] + 'T' + s[3] + ':00').getTime();
         const to = new Date(s[5] + 'T' + s[6] + ':00').getTime();
-        const time = new Date(to).getTime();
+
         if (s[0] == 'Availability')
             availability[fro] = [to, s[1].slice(0, -1)];
         else
-            shift[fro] = [to, s[1]];
+            shift[fro] = [to, s[1].slice(0, -1)];
 
     }).on('close', function () {
-        sAv = sortkeys(availability);
-        sSh = sortkeys(shift);
-        var i = 0;
-        for (var key in sAv)
-            queue.push([key, sAv[key]])
+        sortedAvail = sortkeys(availability);
+        sortedShift = sortkeys(shift);
+        for (var key in sortedAvail)
+            availQueue.push([key, sortedAvail[key]])
 
-        processSchedule(queue, sSh)
+        processSchedule(availQueue, sortedShift)
 
     })
-
 }
 
 
 processSchedule = (ava, shi) => {
-    j = 0;
-    console.log("from here")
+
     for (key in shi) {
-        console.log(' ava ' + ava[0][0] + ' key ' + key)
-
-        for (i = 0; i < ava.length; i++) {
-            if (ava[i][0] <= key) {
-
+        for (i = 0; i < ava.length; i++) 
+            if (ava[i][0] <= key) 
                 if (shi[key][0] <= ava[i][1][0]) {
-
-                   console.log(shi[key][1] + " j : " + j++ + " " + ava[i][1][1])
+                    console.log(shi[key][1])
                     break
                 }
-            }
-        }
-        while (ava[0][1][0] < key) {
+        while (ava[0][1][0] < key)
             ava.shift();
-            console.log('hi :')
-        }
-
     }
-    console.log(ava);
-
 }
 
 sortkeys = (obje) => Object.keys(obje).sort().reduce(
@@ -79,7 +63,7 @@ sortkeys = (obje) => Object.keys(obje).sort().reduce(
     {}
 )
 
-
-if (require.main === module) {
-    main();
-}
+/*  j = 0;
+  console.log(ava);
+       console.log(' ava ' + ava[0][0] + ' key ' + key)
+      console.log(shi[key][1] + " j : " + j++ + " " + ava[i][1][1]) */
